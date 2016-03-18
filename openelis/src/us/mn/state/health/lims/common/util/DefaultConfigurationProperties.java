@@ -55,7 +55,7 @@ public class DefaultConfigurationProperties extends ConfigurationProperties {
 		setDBPropertyMappingAndDefault(Property.PatientSearchPassword, "patientSearchPassword", "" );
 		setDBPropertyMappingAndDefault(Property.UseExternalPatientInfo, "useExternalPatientSource" , "false");
 		setDBPropertyMappingAndDefault(Property.labDirectorName, "lab director" , "");
-		setDBPropertyMappingAndDefault(Property.languageSwitch, "allowLanguageChange", "false" );
+		setDBPropertyMappingAndDefault(Property.languageSwitch, "allowLanguageChange", "true" );
 		setDBPropertyMappingAndDefault(Property.resultReportingURL, "resultReportingURL", "");
 		setDBPropertyMappingAndDefault(Property.reportResults, "resultReporting", "false");
 		setDBPropertyMappingAndDefault(Property.malariaSurveillanceReportURL, "malariaSurURL", "");
@@ -80,8 +80,8 @@ public class DefaultConfigurationProperties extends ConfigurationProperties {
 		setDBPropertyMappingAndDefault(Property.AccessionFormat , "acessionFormat", "SITEYEARNUM"); //spelled wrong in DB
 		setDBPropertyMappingAndDefault(Property.trackPatientPayment, "trackPayment", "false");
 		setDBPropertyMappingAndDefault(Property.alertForInvalidResults, "alertWhenInvalidResult", "false");
-		setDBPropertyMappingAndDefault(Property.defaultDateLocale, "default date locale", "fr-FR");
-		setDBPropertyMappingAndDefault(Property.defaultLangLocale, "default language locale", "fr-FR");
+		setDBPropertyMappingAndDefault(Property.defaultDateLocale, "default date locale", "es-ES");
+		setDBPropertyMappingAndDefault(Property.defaultLangLocale, "default language locale", "es-ES");
 		setDBPropertyMappingAndDefault(Property.configurationName, "configuration name", "not set");
 		setDBPropertyMappingAndDefault(Property.CONDENSE_NFS_PANEL, "condenseNFS", "false");
 		setDBPropertyMappingAndDefault(Property.patientDataOnResultsByRole, "roleForPatientOnResults", "false");
