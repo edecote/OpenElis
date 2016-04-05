@@ -72,8 +72,8 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void shouldCheckForValidSubcenterCode() throws Exception {
-        CSVSample csvSample_InvalidSubcenterCode = new CSVSample("inValidSubcenterCode", "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_InvalidSubcenterCode);
+        CSVSamplePT10 csvSample_InvalidSubcenterCode = new CSVSamplePT10("inValidSubcenterCode", "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_InvalidSubcenterCode);
 
         assertFalse("Invalid subcenter code", sampleRowResult.isSuccessful());
 
@@ -84,8 +84,8 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void shouldCheckSubcenterCodeIsNotEmpty() throws Exception {
-        CSVSample csvSample_EmptySubcenterCode = new CSVSample("", "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_EmptySubcenterCode);
+        CSVSamplePT10 csvSample_EmptySubcenterCode = new CSVSamplePT10("", "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_EmptySubcenterCode);
 
         assertFalse("Invalid subcenter code", sampleRowResult.isSuccessful());
 
@@ -98,8 +98,8 @@ public class TestResultPersisterTest{
     public void shouldCheckForCorrectnessOfTestName() throws Exception {
         List<CSVTestResult> invalidTestResults = Arrays.asList(new CSVTestResult("invalidTestName1", "valueForInvalidTest"),
                 new CSVTestResult("invalidTestName2", "valueForInvalidTest"), validTestResults.get(0));
-        CSVSample csvSample_InvalidTestName = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", invalidTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
+        CSVSamplePT10 csvSample_InvalidTestName = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", invalidTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
 
         assertFalse("validation should fail because of invalid test name", sampleRowResult.isSuccessful());
 
@@ -112,8 +112,8 @@ public class TestResultPersisterTest{
     public void rowWithAtleastOneNonEmptyTestResult_ShouldBeValid() throws Exception {
         CSVTestResult emptyTestResult = new CSVTestResult("", "");
         List<CSVTestResult> testResultsWithOneEmptyTestResult = Arrays.asList(validTestResults.get(0), emptyTestResult, validTestResults.get(1));
-        CSVSample csvSample_InvalidTestName = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithOneEmptyTestResult);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
+        CSVSamplePT10 csvSample_InvalidTestName = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithOneEmptyTestResult);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
 
         assertTrue(sampleRowResult.isSuccessful());
     }
@@ -122,8 +122,8 @@ public class TestResultPersisterTest{
     public void rowWithAllEmptyTestResult_IsOk() throws Exception {
         CSVTestResult emptyTestResult = new CSVTestResult("", "");
         List<CSVTestResult> testResultsWithAllEmptyTestResult = Arrays.asList(emptyTestResult);
-        CSVSample csvSample_InvalidTestName = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithAllEmptyTestResult);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
+        CSVSamplePT10 csvSample_InvalidTestName = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithAllEmptyTestResult);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
 
         assertTrue("empty test result rows are ok", sampleRowResult.isSuccessful());
     }
@@ -132,16 +132,16 @@ public class TestResultPersisterTest{
     public void testNeedNotHaveResults() throws Exception {
         CSVTestResult invalidTestResult = new CSVTestResult(validTestResults.get(0).test, "");
         List<CSVTestResult> testResultsWithOneInvalidTestResult = Arrays.asList(invalidTestResult, validTestResults.get(1));
-        CSVSample csvSample_InvalidTestName = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithOneInvalidTestResult);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
+        CSVSamplePT10 csvSample_InvalidTestName = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", testResultsWithOneInvalidTestResult);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_InvalidTestName);
 
         assertTrue("tests need not have results", sampleRowResult.isSuccessful());
     }
 
     @org.junit.Test
     public void accessionNumberShouldNotBeBlank() throws Exception {
-        CSVSample csvSample_blankAccessionNumber = new CSVSample(validSubscenterNameGAN, "123", "", "25-02-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_blankAccessionNumber);
+        CSVSamplePT10 csvSample_blankAccessionNumber = new CSVSamplePT10(validSubscenterNameGAN, "123", "", "25-02-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_blankAccessionNumber);
 
         assertFalse("validation should fail because of blank accession number", sampleRowResult.isSuccessful());
 
@@ -152,8 +152,8 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void accessionNumberShouldBeInAValidFormat() throws Exception {
-        CSVSample csvSample_blankAccessionNumber = new CSVSample(validSubscenterNameGAN, "123", "invalidAccessionNumber", "25-02-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_blankAccessionNumber);
+        CSVSamplePT10 csvSample_blankAccessionNumber = new CSVSamplePT10(validSubscenterNameGAN, "123", "invalidAccessionNumber", "25-02-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_blankAccessionNumber);
 
         assertFalse("validation should fail because of invalid accession number", sampleRowResult.isSuccessful());
 
@@ -164,8 +164,8 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void sampleDateShouldBeOfValidFormatOf_dd_mm_yyyy() throws Exception {
-        CSVSample csvSample_invalidDate = new CSVSample(validSubscenterNameGAN, "123", "invalidAccessionNumber", "02-25-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(csvSample_invalidDate);
+        CSVSamplePT10 csvSample_invalidDate = new CSVSamplePT10(validSubscenterNameGAN, "123", "invalidAccessionNumber", "02-25-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(csvSample_invalidDate);
 
         assertFalse("validation should fail because of invalid date format", sampleRowResult.isSuccessful());
 
@@ -176,23 +176,23 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void shouldBeValid() throws Exception {
-        CSVSample validCsvSample = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
-        RowResult<CSVSample> sampleRowResult = testResultPersister.validate(validCsvSample);
+        CSVSamplePT10 validCsvSample = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
+        RowResult<CSVSamplePT10> sampleRowResult = testResultPersister.validate(validCsvSample);
 
         assertTrue("validation should pass", sampleRowResult.isSuccessful());
     }
 
     @org.junit.Test
     public void shouldPersistTestResults() {
-        CSVSample validCsvSample = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
+        CSVSamplePT10 validCsvSample = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "sub center", validTestResults);
         testResultPersister.persist(validCsvSample);
         verify(testResultPersisterService).persist(validCsvSample);
     }
 
     @org.junit.Test
     public void shouldBeInvalid_when_sampleSourceIsBlank() {
-        CSVSample invalidCsvSample = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "", validTestResults);
-        RowResult<CSVSample> rowResult = testResultPersister.validate(invalidCsvSample);
+        CSVSamplePT10 invalidCsvSample = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "", validTestResults);
+        RowResult<CSVSamplePT10> rowResult = testResultPersister.validate(invalidCsvSample);
 
         assertFalse(rowResult.isSuccessful());
         String[] rowWithErrorColumn = rowResult.getRowWithErrorColumn();
@@ -202,8 +202,8 @@ public class TestResultPersisterTest{
 
     @org.junit.Test
     public void shouldBeInvalid_when_sampleSourceIsNotFromDB() {
-        CSVSample invalidCsvSample = new CSVSample(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "not from db", validTestResults);
-        RowResult<CSVSample> rowResult = testResultPersister.validate(invalidCsvSample);
+        CSVSamplePT10 invalidCsvSample = new CSVSamplePT10(validSubscenterNameGAN, "123", validAccessionNumber, "25-02-2012", "not from db", validTestResults);
+        RowResult<CSVSamplePT10> rowResult = testResultPersister.validate(invalidCsvSample);
 
         assertFalse(rowResult.isSuccessful());
         String[] rowWithErrorColumn = rowResult.getRowWithErrorColumn();

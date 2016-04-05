@@ -22,23 +22,23 @@ import org.bahmni.csv.CSVRepeatingHeaders;
 
 import java.util.List;
 
-public class CSVSample extends CSVEntity {
+public class CSVSamplePT10 extends CSVEntity {
     @CSVHeader(name = "No")
     public String no;
     @CSVHeader(name = "Patient_ID")
     public String patientRegistrationNumber;
+    @CSVHeader(name = "Accession Number")
+    public String accessionNumber;
     @CSVHeader(name = "Date")
     public String sampleDate;
     @CSVHeader(name = "Product_Name")
     public String sampleSource;
     @CSVRepeatingHeaders(names = {"Analyte", "Result"}, type = CSVTestResult.class)
     public List<CSVTestResult> testResults;
-    @CSVHeader(name = "Accession Number")
-    public String accessionNumber;
 
-    public CSVSample() { }
+    public CSVSamplePT10() { }
 
-    public CSVSample(String healthCenter, String patientRegistrationNumber, String accessionNumber, String sampleDate, String sampleSource, List<CSVTestResult> testResults) {
+    public CSVSamplePT10(String healthCenter, String patientRegistrationNumber, String accessionNumber, String sampleDate, String sampleSource, List<CSVTestResult> testResults) {
         this.healthCenter = healthCenter;
         this.patientRegistrationNumber = patientRegistrationNumber;
         this.accessionNumber = accessionNumber;
