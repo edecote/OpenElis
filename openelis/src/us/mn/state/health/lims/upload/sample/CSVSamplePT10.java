@@ -23,6 +23,8 @@ import org.bahmni.csv.CSVRepeatingHeaders;
 import java.util.List;
 
 public class CSVSamplePT10 extends CSVEntity {
+	@CSVHeader(name = "Health Center")
+    public String healthCenter;
     @CSVHeader(name = "No")
     public String no;
     @CSVHeader(name = "Patient_ID")

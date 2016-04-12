@@ -80,10 +80,6 @@ public class TestResultPersister implements EntityPersister<CSVSample> {
         if(!fullRegistrationNumber.matches(registrationNumberFormat))
             errorMessage.append("PatientID does not conform to the allowed format.\n");
 
-        if (isEmpty(csvSample.sampleSource) || !getSampleSources().contains(csvSample.sampleSource)) {
-            errorMessage.append("Invalid Sample source.\n");
-        }
-
         errorMessage.append(validateTestNames(csvSample.testResults));
 //        errorMessage.append(validateAtLeastOneTestIsNonEmpty(csvSample.testResults));
 //        errorMessage.append(validateAllTestResultsAreValid(csvSample.testResults));
